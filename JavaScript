@@ -1,0 +1,67 @@
+// Add event listener to the navigation links
+document.querySelectorAll('header nav a').forEach((link) => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Add event listener to the hero button
+document.querySelector('.hero button').addEventListener('click', () => {
+    document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Add animation to the gallery items
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+galleryItems.forEach((item) => {
+    item.addEventListener('mouseover', () => {
+        item.querySelector('.overlay').style.opacity = 1;
+    });
+
+    item.addEventListener('mouseout', () => {
+        item.querySelector('.overlay').style.opacity = 0;
+    });
+});
+
+// Form validation
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.querySelector('input[type="text"]').value;
+    const email = document.querySelector('input[type="email"]').value;
+    const message = document.querySelector('textarea').value;
+
+    if (name && email && message) {
+        // Submit the form data
+        console.log('Form submitted:', name, email, message);
+        form.reset();
+    } else {
+        alert('Please fill out all fields.');
+    }
+});
+
+// Social media links
+const socialLinks = document.querySelectorAll('.social-links a');
+
+socialLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+        window.open(url, '_blank');
+    });
+});
+
+// Scroll animation
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+
+    if (scrollPosition > heroHeight) {
+        document.querySelector('header').classList.add('scrolled');
+    } else {
+        document.querySelector('header').classList.remove('scrolled');
+    }
+});
